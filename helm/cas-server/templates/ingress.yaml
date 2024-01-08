@@ -2,6 +2,8 @@
 {{- $fullName := include "cas-server.fullname" . -}}
 {{- $svcPort := .Values.cas.service.port -}}
 {{- $kubeVersion := .Capabilities.KubeVersion.Version -}}
+{{- $kubeVersion = split "-" $kubeVersion -}}
+{{- $kubeVersion = index $kubeVersion "_0" -}}
 {{- if semverCompare ">=1.19.0" $kubeVersion }}
 apiVersion: networking.k8s.io/v1
 {{- else -}}
