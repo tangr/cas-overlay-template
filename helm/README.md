@@ -31,6 +31,7 @@ This chart uses stateful set for CAS rather than a deployment and this may chang
     cd helm 
     # create secret for tomcat
     kubectl create secret generic cas-server-keystore --from-file=thekeystore=/etc/cas/thekeystore
+    ./create-truststore.sh cas
     # create secret for ingress controller to use with CAS ingress (nginx-ingress will use default if you don't create)
     ./create-ingress-tls.sh
     # install cas-server helm chart
@@ -56,6 +57,7 @@ Assuming you have run `./gradlew createKeystore` or put you server keystore in `
 run the following to create a secret containing the keystore: 
 ```shell script
 kubectl create secret generic cas-server-keystore --from-file=thekeystore=/etc/cas/thekeystore
+./create-truststore.sh cas
 ```
 
 ### Install CAS Server helm chart
